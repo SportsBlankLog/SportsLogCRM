@@ -2,7 +2,6 @@
 // © https://github.com/badhitman - @FakeGov 
 ////////////////////////////////////////////////
 
-using Transmission.Receives.Outers.Breez;
 using SharedLib;
 
 namespace ConnectorSportsLogApiService;
@@ -18,19 +17,7 @@ public static class RegisterMqListenerExtension
     public static IServiceCollection ApiBreezRuRegisterMqListeners(this IServiceCollection services)
     {
         return services
-            .RegisterMqListener<DownloadAndSaveReceive, object, ResponseBaseModel>()
-            .RegisterMqListener<LeftoversGetReceive, string, TResponseModel<List<BreezRuLeftoverModel>>>()
-            .RegisterMqListener<HealthCheckReceive, object, TResponseModel<List<RabbitMqManagementResponseModel>>>()
-            .RegisterMqListener<GetTechProductReceive, TechRequestBreezModel, TResponseModel<List<TechProductRealBreezRuModel>>>()
-            .RegisterMqListener<GetTechCategoryReceive, TechRequestBreezModel, TResponseModel<List<TechCategoryRealBreezRuModel>>>()
-            .RegisterMqListener<GetProductsReceive, object, TResponseModel<List<ProductRealBreezRuModel>>>()
-            .RegisterMqListener<GetCategoriesReceive, object, TResponseModel<List<CategoryRealBreezRuModel>>>()
-            .RegisterMqListener<GetBrandsReceive, object, TResponseModel<List<BrandRealBreezRuModel>>>()
-            .RegisterMqListener<ProductUpdateReceive, ProductBreezRuModelDB, ResponseBaseModel>()
-            .RegisterMqListener<CategoryUpdateReceive, CategoryBreezRuModelDB, ResponseBaseModel>()
-            .RegisterMqListener<TechCategoryUpdateReceive, TechCategoryBreezRuModelDB, ResponseBaseModel>()
-            .RegisterMqListener<TechProductUpdateReceive, TechProductBreezRuModelDB, ResponseBaseModel>()
-            .RegisterMqListener<ProductsSelectReceive, BreezRequestModel, TPaginationResponseModel<ProductViewBreezRuModeld>>()
+            //.RegisterMqListener<, , >()
             ;
     }
 }
