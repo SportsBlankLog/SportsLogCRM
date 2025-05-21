@@ -14,7 +14,7 @@ public static class RegisterMqListenerExtension
     /// <summary>
     /// RegisterMqListeners
     /// </summary>
-    public static IServiceCollection ApiBreezRuRegisterMqListeners(this IServiceCollection services)
+    public static IServiceCollection SportsLogRegisterMqListeners(this IServiceCollection services)
     {
         return services
             //.RegisterMqListener<, , >()

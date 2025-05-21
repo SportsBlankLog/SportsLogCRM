@@ -36,11 +36,7 @@ Aspire хост (`DesignerApp.AppHost`) настраивается в одном
     "HelpDeskConnection": "Server=localhost;Port=5432;User Id=dev;Password=dev;Database=HelpDeskContext",
     "ConstructorConnection": "Server=localhost;Port=5432;User Id=dev;Password=dev;Database=ConstructorContext",
 	
-    "ApiBreezRuConnection": "Server=localhost;Port=5432;User Id=dev;Password=dev;Database=ApiBreezRu;Timeout=300;CommandTimeout=300;Pooling=true;Minimum Pool Size=10;Maximum Pool Size=25;",
-    "ApiDaichiBusinessConnection": "Server=localhost;Port=5432;User Id=dev;Password=dev;Database=ApiDaichiBusiness;Timeout=300;CommandTimeout=300;Pooling=true;Minimum Pool Size=10;Maximum Pool Size=25;",
-    "ApiRusklimatComConnection": "Server=localhost;Port=5432;User Id=dev;Password=dev;Database=ApiRusklimatCom;Timeout=300;CommandTimeout=300;Pooling=true;Minimum Pool Size=10;Maximum Pool Size=25;",
-    "FeedsHaierProffRuConnection": "Server=localhost;Port=5432;User Id=dev;Password=dev;Database=FeedsHaierProffRu;Timeout=300;CommandTimeout=300;Pooling=true;Minimum Pool Size=10;Maximum Pool Size=25;",
-
+    "ConnectorSportsLogApiConnection": "Server=localhost;Port=5432;User Id=dev;Password=dev;Database=SportsLogContext;Timeout=300;CommandTimeout=300;Pooling=true;Minimum Pool Size=10;Maximum Pool Size=25;",
   }
 }
 ```

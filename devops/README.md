@@ -72,10 +72,7 @@ dotnet publish -c Release --output /srv/git/builds/ConstructorService /srv/git/B
 dotnet publish -c Release --output /srv/git/builds/TelegramBotService /srv/git/BlankCRM/micro-services/TelegramBotService/TelegramBotService.csproj
 dotnet publish -c Release --output /srv/git/builds/KladrService /srv/git/BlankCRM/micro-services/KladrService/KladrService.csproj
 dotnet publish -c Release --output /srv/git/builds/LdapService /srv/git/BlankCRM/micro-services/LdapService/LdapService.csproj
-dotnet publish -c Release --output /srv/git/builds/ApiBreezRuService /srv/git/BlankCRM/micro-services/outer/ApiBreezRuService/ApiBreezRuService.csproj
-dotnet publish -c Release --output /srv/git/builds/ApiDaichiBusinessService /srv/git/BlankCRM/micro-services/outer/ApiDaichiBusinessService/ApiDaichiBusinessService.csproj
-dotnet publish -c Release --output /srv/git/builds/ApiRusklimatComService /srv/git/BlankCRM/micro-services/outer/ApiRusklimatComService/ApiRusklimatComService.csproj
-dotnet publish -c Release --output /srv/git/builds/FeedsHaierProffRuService /srv/git/BlankCRM/micro-services/outer/FeedsHaierProffRuService/FeedsHaierProffRuService.csproj
+dotnet publish -c Release --output /srv/git/builds/ConnectorSportsLogApiService /srv/git/BlankCRM/micro-services/ConnectorSportsLogApiService/ConnectorSportsLogApiService.csproj
 dotnet publish -c Release --output /srv/git/builds/IdentityService /srv/git/BlankCRM/micro-services/IdentityService/IdentityService.csproj
 dotnet publish -c Release --output /srv/git/builds/BlankBlazorApp /srv/git/BlankCRM/BlankBlazorApp/BlankBlazorApp/BlankBlazorApp.csproj
 
@@ -100,10 +97,7 @@ systemctl status tg.app.stage.service
 systemctl status bus.app.stage.service
 systemctl status web.app.stage.service
 systemctl status comm.app.stage.service
-systemctl status feeds-haier-proff-ru-service.app.stage.service
-systemctl status api-rusklimat-com-service.app.stage.service
-systemctl status api-daichi-business-service.app.stage.service
-systemctl status api-breez-ru-service.app.stage.service
+systemctl status sports-log-service.app.stage.service
 
 ```
 

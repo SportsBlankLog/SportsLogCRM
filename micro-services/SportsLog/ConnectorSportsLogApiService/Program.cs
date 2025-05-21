@@ -101,7 +101,7 @@ public class Program
                
         RabbitMQConfigModel _mqConf = builder.Configuration.GetSection("RabbitMQConfig").Get<RabbitMQConfigModel>() ?? throw new Exception("RabbitMQ not config");
 
-        string connectionStorage = builder.Configuration.GetConnectionString($"ConnectorSportsLogApiConnection{_modePrefix}") ?? throw new InvalidOperationException($"Connection string 'ApiBreezRuConnection{_modePrefix}' not found.");
+        string connectionStorage = builder.Configuration.GetConnectionString($"ConnectorSportsLogApiConnection{_modePrefix}") ?? throw new InvalidOperationException($"Connection string 'ConnectorSportsLogApiConnection{_modePrefix}' not found.");
         builder.Services.AddDbContextFactory<SportsLogsContext>(opt =>
             opt.UseNpgsql(connectionStorage));
 
@@ -110,7 +110,7 @@ public class Program
         builder.Services
             .AddSingleton<IRabbitClient>(x => new RabbitClient(x.GetRequiredService<IOptions<RabbitMQConfigModel>>(), x.GetRequiredService<ILogger<RabbitClient>>(), appName));
 
-        builder.Services.ApiBreezRuRegisterMqListeners();
+        builder.Services.SportsLogRegisterMqListeners();
         #endregion
         
 
