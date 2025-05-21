@@ -517,6 +517,11 @@ public static partial class GlobalStaticConstantsRoutes
         public const string BREEZ_CONTROLLER_NAME = "BREEZ";
 
         /// <summary>
+        /// SPORTSLOG
+        /// </summary>
+        public const string SPORTSLOG_CONTROLLER_NAME = "SPORTSLOG";
+
+        /// <summary>
         /// DAICHI
         /// </summary>
         public const string DAICHI_CONTROLLER_NAME = "DAICHI";

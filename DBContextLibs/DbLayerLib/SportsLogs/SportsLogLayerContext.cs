@@ -8,10 +8,10 @@ using SharedLib;
 namespace DbcLib;
 
 /// <inheritdoc/>
-public abstract partial class SportsLogsLayerContext : DbContext
+public abstract partial class SportsLogLayerContext : DbContext
 {
     /// <inheritdoc/>
-    public SportsLogsLayerContext(DbContextOptions options)
+    public SportsLogLayerContext(DbContextOptions options)
         : base(options)
     {
         //#if DEBUG

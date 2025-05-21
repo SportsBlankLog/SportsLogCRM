@@ -3,6 +3,7 @@
 ////////////////////////////////////////////////
 
 using SharedLib;
+using Transmission.Receives.SportsLog;
 
 namespace ConnectorSportsLogApiService;
 
@@ -17,7 +18,7 @@ public static class RegisterMqListenerExtension
     public static IServiceCollection SportsLogRegisterMqListeners(this IServiceCollection services)
     {
         return services
-            //.RegisterMqListener<, , >()
+            .RegisterMqListener<DownloadAndSaveReceive, object, ResponseBaseModel>()
             ;
     }
 }

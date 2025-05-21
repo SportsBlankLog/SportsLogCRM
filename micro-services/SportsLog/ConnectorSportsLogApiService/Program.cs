@@ -102,7 +102,7 @@ public class Program
         RabbitMQConfigModel _mqConf = builder.Configuration.GetSection("RabbitMQConfig").Get<RabbitMQConfigModel>() ?? throw new Exception("RabbitMQ not config");
 
         string connectionStorage = builder.Configuration.GetConnectionString($"ConnectorSportsLogApiConnection{_modePrefix}") ?? throw new InvalidOperationException($"Connection string 'ConnectorSportsLogApiConnection{_modePrefix}' not found.");
-        builder.Services.AddDbContextFactory<SportsLogsContext>(opt =>
+        builder.Services.AddDbContextFactory<SportsLogContext>(opt =>
             opt.UseNpgsql(connectionStorage));
 
         string appName = typeof(Program).Assembly.GetName().Name ?? "AssemblyName";

@@ -38,8 +38,7 @@ Add-Migration TelegramBotContext005 -Context TelegramBotContext -Project DbPostg
 Update-Database -Context TelegramBotContext -Project DbPostgreLib -StartupProject TelegramBotService
 ```
 
-
 ```
-Add-Migration SportsLogsContext002 -Context SportsLogsContext -Project DbPostgreLib -StartupProject ConnectorSportsLogApiService
-Update-Database -Context SportsLogsContext -Project DbPostgreLib -StartupProject ConnectorSportsLogApiService
+Add-Migration SportsLogContext002 -Context SportsLogContext -Project DbPostgreLib -StartupProject ConnectorSportsLogApiService
+Update-Database -Context SportsLogContext -Project DbPostgreLib -StartupProject ConnectorSportsLogApiService
 ```

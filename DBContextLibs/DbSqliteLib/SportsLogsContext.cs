@@ -9,7 +9,7 @@ namespace DbcLib;
 /// <summary>
 /// Промежуточный/общий слой контекста базы данных
 /// </summary>
-public partial class SportsLogsContext(DbContextOptions<SportsLogsContext> options) : SportsLogsLayerContext(options)
+public partial class SportsLogContext(DbContextOptions<SportsLogContext> options) : SportsLogLayerContext(options)
 {
 
 }
