@@ -40,18 +40,6 @@ Update-Database -Context TelegramBotContext -Project DbPostgreLib -StartupProjec
 
 
 ```
-Add-Migration ApiBreezRuContext002 -Context ApiBreezRuContext -Project DbPostgreLib -StartupProject ApiBreezRuService
-Update-Database -Context ApiBreezRuContext -Project DbPostgreLib -StartupProject ApiBreezRuService
-```
-```
-Add-Migration ApiDaichiBusinessContext002 -Context ApiDaichiBusinessContext -Project DbPostgreLib -StartupProject ApiDaichiBusinessService
-Update-Database -Context ApiDaichiBusinessContext -Project DbPostgreLib -StartupProject ApiDaichiBusinessService
-```
-```
-Add-Migration ApiRusklimatComContext002 -Context ApiRusklimatComContext -Project DbPostgreLib -StartupProject ApiRusklimatComService
-Update-Database -Context ApiRusklimatComContext -Project DbPostgreLib -StartupProject ApiRusklimatComService
-```
-```
-Add-Migration FeedsHaierProffRuContext002 -Context FeedsHaierProffRuContext -Project DbPostgreLib -StartupProject FeedsHaierProffRuService
-Update-Database -Context FeedsHaierProffRuContext -Project DbPostgreLib -StartupProject FeedsHaierProffRuService
+Add-Migration SportsLogsContext002 -Context SportsLogsContext -Project DbPostgreLib -StartupProject SportsLogsService
+Update-Database -Context SportsLogsContext -Project DbPostgreLib -StartupProject SportsLogsService
 ```

@@ -1,0 +1,17 @@
+[Unit]
+Description=sports-logs-service.app.stage.service
+
+[Service]
+WorkingDirectory=/srv/services.stage/ConnectorSportsLogApiService
+ExecStart=/usr/bin/dotnet /srv/services.stage/ConnectorSportsLogApiService/ConnectorSportsLogApiService.dll
+Restart=always
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=dotnet-sports-logs-service.stage
+User=www-data
+Environment=DOTNET_ENVIRONMENT=Staging
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+Environment=TransmissionQueueNamePrefix=_stage
+
+[Install]
+WantedBy=multi-user.target

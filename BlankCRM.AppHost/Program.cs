@@ -129,7 +129,7 @@ public class Program
 
         IResourceBuilder<IResourceWithConnectionString> redisConnectionStr = builder.AddConnectionString($"RedisConnectionString{_modePrefix}");
         IResourceBuilder<IResourceWithConnectionString> identityConnectionStr = builder.AddConnectionString($"IdentityConnection{_modePrefix}");
-        
+
         IResourceBuilder<ProjectResource> storageService = builder.AddProject<Projects.StorageService>("storageservice")
             .WithReference(builder.AddConnectionString($"NlogsConnection{_modePrefix}"))
             .WithEnvironment(act => rabbitConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
@@ -137,37 +137,17 @@ public class Program
             .WithReference(builder.AddConnectionString($"CloudParametersConnection{_modePrefix}"))
             ;
 
-#if OUTER_DATA
-        IResourceBuilder<ProjectResource> apiBreezRuService = builder.AddProject<Projects.ApiBreezRuService>("apibreezrueservice")
-            .WithEnvironment(act => rabbitConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
-            .WithEnvironment(act => mongoConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
-            .WithReference(builder.AddConnectionString($"ApiBreezRuConnection{_modePrefix}"))
-            ;
-
-        IResourceBuilder<ProjectResource> apiDaichiBusinessService = builder.AddProject<Projects.ApiDaichiBusinessService>("apidaichibusinesseservice")
-            .WithEnvironment(act => rabbitConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
-            .WithEnvironment(act => mongoConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
-            .WithReference(builder.AddConnectionString($"ApiDaichiBusinessConnection{_modePrefix}"))
-            ;
-
-        IResourceBuilder<ProjectResource> apiRusklimatComService = builder.AddProject<Projects.ApiRusklimatComService>("apirusklimatcomeservice")
-            .WithEnvironment(act => rabbitConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
-            .WithEnvironment(act => mongoConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
-            .WithReference(builder.AddConnectionString($"ApiRusklimatComConnection{_modePrefix}"))
-            ;
-
-        IResourceBuilder<ProjectResource> feedsHaierProffRuService = builder.AddProject<Projects.FeedsHaierProffRuService>("feedshaierproffrueservice")
-            .WithEnvironment(act => rabbitConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
-            .WithEnvironment(act => mongoConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
-            .WithReference(builder.AddConnectionString($"FeedsHaierProffRuConnection{_modePrefix}"))
-            ;
-#endif
-
         IResourceBuilder<ProjectResource> kladrService = builder.AddProject<Projects.KladrService>("kladreservice")
             .WithEnvironment(act => rabbitConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
             .WithEnvironment(act => mongoConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
             .WithReference(builder.AddConnectionString($"KladrConnection{_modePrefix}"))
             ;
+
+        IResourceBuilder<ProjectResource> sportsLogService = builder.AddProject<Projects.ConnectorSportsLogApiService>("connectorsportslogapiservice")
+           .WithEnvironment(act => rabbitConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
+           .WithEnvironment(act => mongoConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
+           .WithReference(builder.AddConnectionString($"ConnectorSportsLogApiConnection{_modePrefix}"))
+           ;
 
         IResourceBuilder<ProjectResource> helpdeskService = builder.AddProject<Projects.HelpDeskService>("helpdeskservice")
             .WithEnvironment(act => rabbitConfig.ForEach(x => act.EnvironmentVariables.Add(x.Key, x.Value ?? "")))
@@ -232,19 +212,8 @@ public class Program
             .WaitFor(constructorService)
             .WithReference(kladrService)
             .WaitFor(kladrService)
-# if OUTER_DATA
-            .WithReference(apiBreezRuService)
-            .WaitFor(apiBreezRuService)
-
-            .WithReference(apiDaichiBusinessService)
-            .WaitFor(apiDaichiBusinessService)
-
-            .WithReference(apiRusklimatComService)
-            .WaitFor(apiRusklimatComService)
-
-            .WithReference(feedsHaierProffRuService)
-            .WaitFor(feedsHaierProffRuService)
-#endif
+            .WithReference(sportsLogService)
+            .WaitFor(sportsLogService)
         ;
 
         builder.Build().Run();

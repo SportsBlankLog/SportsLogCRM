@@ -1,0 +1,16 @@
+[Unit]
+Description=sports-logs-service.app.service
+
+[Service]
+WorkingDirectory=/srv/services/ConnectorSportsLogApiService
+ExecStart=/usr/bin/dotnet /srv/services/ConnectorSportsLogApiService/ConnectorSportsLogApiService.dll
+Restart=always
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=dotnet-sports-logs-service
+User=www-data
+Environment=DOTNET_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target

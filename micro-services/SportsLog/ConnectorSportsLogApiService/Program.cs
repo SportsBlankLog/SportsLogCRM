@@ -102,8 +102,8 @@ public class Program
         IdentityPasswordVersionModel breezCredentials = builder.Configuration.GetSection("BreezApiConfig").Get<IdentityPasswordVersionModel>() ?? throw new Exception("BreezApi not config");
         RabbitMQConfigModel _mqConf = builder.Configuration.GetSection("RabbitMQConfig").Get<RabbitMQConfigModel>() ?? throw new Exception("RabbitMQ not config");
 
-        string connectionStorage = builder.Configuration.GetConnectionString($"ApiBreezRuConnection{_modePrefix}") ?? throw new InvalidOperationException($"Connection string 'ApiBreezRuConnection{_modePrefix}' not found.");
-        builder.Services.AddDbContextFactory<ApiBreezRuContext>(opt =>
+        string connectionStorage = builder.Configuration.GetConnectionString($"ConnectorSportsLogApiConnection{_modePrefix}") ?? throw new InvalidOperationException($"Connection string 'ApiBreezRuConnection{_modePrefix}' not found.");
+        builder.Services.AddDbContextFactory<SportsLogsContext>(opt =>
             opt.UseNpgsql(connectionStorage));
 
         string appName = typeof(Program).Assembly.GetName().Name ?? "AssemblyName";
@@ -113,10 +113,7 @@ public class Program
 
         builder.Services.ApiBreezRuRegisterMqListeners();
         #endregion
-        builder.Services
-            .AddScoped<IBreezRuApiService, BreezRuApiService>()
-            .AddScoped<IBreezRuApiTransmission, BreezRuTransmission>()
-            ;
+        
 
         builder.Services.AddHttpClient(HttpClientsNamesEnum.RabbitMqManagement.ToString(), cc =>
         {
