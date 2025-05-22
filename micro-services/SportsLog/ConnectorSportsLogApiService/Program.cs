@@ -122,6 +122,11 @@ public class Program
             cc.DefaultRequestHeaders.Add("Authorization", $"Basic {base64EncodedAuthenticationString}");
         });
 
+        builder.Services.AddHttpClient(HttpClientsNamesSportsLogEnum.Fantasy402.ToString(), cc =>
+        {
+            cc.BaseAddress = new Uri($"https://fantasy402.com/cloud/api");
+        });
+
         // Custom metrics for the application
         Meter greeterMeter = new($"OTel.{appName}", "1.0.0");
         OpenTelemetryBuilder otel = builder.Services.AddOpenTelemetry();

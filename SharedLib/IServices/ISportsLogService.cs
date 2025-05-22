@@ -10,5 +10,5 @@ namespace SharedLib;
 public interface ISportsLogService
 {
     /// <inheritdoc/>
-    public Task<ResponseBaseModel> DownloadAndSaveAsync(CancellationToken token = default);
+    public Task<ResponseBaseModel> DownloadAndSaveAsync(BodyRequestSportsLogModel req, CancellationToken token = default);
 }

@@ -18,6 +18,43 @@ namespace SharedLib;
 /// </summary>
 public static partial class GlobalToolsStandard
 {
+    #region ToDictionary
+    /// <inheritdoc/>
+    public static IDictionary<string, object> ToDictionary(this object source, bool skipNull = true)
+    {
+        return source.ToDictionary<object>(skipNull);
+    }
+
+    /// <inheritdoc/>
+    public static IDictionary<string, T> ToDictionary<T>(this object source, bool skipNull = true)
+    {
+        if (source is null)
+            ThrowExceptionWhenSourceArgumentIsNull();
+
+        Dictionary<string, T> dictionary = [];
+        foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(source))
+            AddPropertyToDictionary(property, source!, dictionary, skipNull);
+        return dictionary;
+    }
+
+    private static void AddPropertyToDictionary<T>(PropertyDescriptor property, object source, Dictionary<string, T> dictionary, bool skipNull = true)
+    {
+        object value = property.GetValue(source);
+        if (IsOfType<T>(value) && (!skipNull || value is not null))
+            dictionary.Add(property.Name, (T)value);
+    }
+
+    private static bool IsOfType<T>(object value)
+    {
+        return value is T;
+    }
+
+    private static void ThrowExceptionWhenSourceArgumentIsNull()
+    {
+        throw new ArgumentNullException("source", "Unable to convert object to a dictionary. The source object is null.");
+    }
+    #endregion
+
     /// <summary>
     /// Создает новый объект System.DateTime, который имеет то же количество тактов,
     /// что и указанный System.DateTime, но обозначается как местное время, всеобщее

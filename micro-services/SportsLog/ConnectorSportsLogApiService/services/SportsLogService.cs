@@ -3,11 +3,9 @@
 ////////////////////////////////////////////////
 
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using RemoteCallLib;
 using SharedLib;
 using DbcLib;
-using static SharedLib.GlobalStaticConstantsRoutes;
+using System.Net.Http.Json;
 
 namespace SportsLogService;
 
@@ -20,8 +18,38 @@ public class SportsLogService(IHttpClientFactory HttpClientFactory,
     : ISportsLogService
 {
     /// <inheritdoc/>
-    public async Task<ResponseBaseModel> DownloadAndSaveAsync(CancellationToken token = default)
+    public async Task<ResponseBaseModel> DownloadAndSaveAsync(BodyRequestSportsLogModel req, CancellationToken token = default)
     {
+        using HttpClient httpClient = HttpClientFactory.CreateClient(HttpClientsNamesSportsLogEnum.Fantasy402.ToString());
+        AuthenticateCustomerSportsLogResultModel? _jwt = await GetJWT(httpClient, req.Authorize, token);
+
+        if (_jwt is null || string.IsNullOrWhiteSpace(_jwt.Code))
+            return ResponseBaseModel.CreateError("Authorization error");
+
+        IDictionary<string, object> postData = req.Payload.ToDictionary();
+        using FormUrlEncodedContent content = new((IEnumerable<KeyValuePair<string, string>>)postData);
+
+        content.Headers.Clear();
+        content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+        content.Headers.Add("Authorization", $"Bearer {_jwt.Code}");
+
+        HttpResponseMessage response = await httpClient.PostAsync("Manager/getCustomerAdmin", content, token);
+
+        //var v = await response.Content.ReadFromJsonAsync<TResult>();
+
+
         throw new NotImplementedException();
+    }
+
+    static async Task<AuthenticateCustomerSportsLogResultModel?> GetJWT(HttpClient httpClient, AuthenticateCustomerRequestModel authorize, CancellationToken token = default)
+    {
+        IDictionary<string, object> postData = authorize.ToDictionary();
+        using FormUrlEncodedContent content = new((IEnumerable<KeyValuePair<string, string>>)postData);
+
+        content.Headers.Clear();
+        content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+
+        HttpResponseMessage response = await httpClient.PostAsync("System/authenticateCustomer", content, token);
+        return await response.Content.ReadFromJsonAsync<AuthenticateCustomerSportsLogResultModel>(cancellationToken: token);
     }
 }

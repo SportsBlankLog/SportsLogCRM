@@ -18,7 +18,7 @@ public static class RegisterMqListenerExtension
     public static IServiceCollection SportsLogRegisterMqListeners(this IServiceCollection services)
     {
         return services
-            .RegisterMqListener<DownloadAndSaveReceive, object, ResponseBaseModel>()
+            .RegisterMqListener<DownloadAndSaveReceive, BodyRequestSportsLogModel, ResponseBaseModel>()
             ;
     }
 }
