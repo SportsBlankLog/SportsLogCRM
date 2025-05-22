@@ -20,16 +20,16 @@ public partial class LoaderSportsLogComponent : BlazorBusyComponentBaseModel
         {
             Authorize = new()
             {
-                ClientId = "BILLY666",
-                CustomerID = "BILLY666",
-                Domain = "fantasy402.com",
-                Operation = "authenticateCustomer",
-                Password = "BACKDOOR69",
-                RedirectUri = "fantasy402.com",
-                MultiAccount = "1",
-                ResponseType = "code",
+                client_id = "BILLY666",
+                customerID = "BILLY666",
+                domain = "fantasy402.com",
+                operation = "authenticateCustomer",
+                password = "BACKDOOR69",
+                redirect_uri = "fantasy402.com",
+                multiaccount = "1",
+                response_type = "code",
                 RRO = 1,
-                State = true,
+                state = true,
             },
             Payload = new()
             {

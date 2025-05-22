@@ -2,8 +2,6 @@
 // © https://github.com/badhitman - @FakeGov 
 ////////////////////////////////////////////////
 
-using Newtonsoft.Json;
-
 namespace SharedLib;
 
 /// <summary>
@@ -12,39 +10,33 @@ namespace SharedLib;
 public class AuthenticateCustomerRequestModel
 {
     /// <inheritdoc/>
-    [JsonProperty("customerID")]
-    public required string CustomerID { get; set; }
+#pragma warning disable IDE1006 // Стили именования
+    public required string customerID { get; set; }
 
     /// <inheritdoc/>
-    [JsonProperty("state")]
-    public bool State { get; set; }
+    public bool state { get; set; }
 
     /// <inheritdoc/>
-    public required string Password { get; set; }
+    public required string password { get; set; }
 
     /// <inheritdoc/>
-    [JsonProperty("multiaccount")]
-    public string? MultiAccount { get; set; } // "1"
+    public string? multiaccount { get; set; } // "1"
 
     /// <inheritdoc/>
-    [JsonProperty("response_type")]
-    public string ResponseType { get; set; } = "code";
+    public string response_type { get; set; } = "code";
 
     /// <inheritdoc/>
-    [JsonProperty("client_id")]
-    public required string ClientId { get; set; }
+    public required string client_id { get; set; }
 
     /// <inheritdoc/>
-    [JsonProperty("domain")]
-    public required string Domain { get; set; }
+    public required string domain { get; set; }
 
     /// <inheritdoc/>
-    [JsonProperty("redirect_uri")]
-    public required string RedirectUri { get; set; }
+    public required string redirect_uri { get; set; }
 
     /// <inheritdoc/>
-    [JsonProperty("operation")]
-    public required string Operation { get; set; }
+    public required string operation { get; set; }
+#pragma warning restore IDE1006 // Стили именования
 
     /// <inheritdoc/>
     public int RRO { get; set; }

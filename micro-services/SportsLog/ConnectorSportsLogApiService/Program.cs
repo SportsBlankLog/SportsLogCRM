@@ -127,7 +127,7 @@ public class Program
 
         builder.Services.AddHttpClient(HttpClientsNamesSportsLogEnum.Fantasy402.ToString(), cc =>
         {
-            cc.BaseAddress = new Uri($"https://fantasy402.com/cloud/api");
+            cc.BaseAddress = new Uri($"https://fantasy402.com/cloud/api/");
         });
 
         // Custom metrics for the application
