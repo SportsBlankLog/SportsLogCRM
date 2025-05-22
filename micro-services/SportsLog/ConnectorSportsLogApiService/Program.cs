@@ -112,7 +112,10 @@ public class Program
 
         builder.Services.SportsLogRegisterMqListeners();
         #endregion
-        
+
+        builder.Services.AddScoped<ISportsLogService, SportsLogService>();
+
+        //
 
         builder.Services.AddHttpClient(HttpClientsNamesEnum.RabbitMqManagement.ToString(), cc =>
         {

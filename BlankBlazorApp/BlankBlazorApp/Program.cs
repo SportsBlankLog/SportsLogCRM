@@ -222,6 +222,7 @@ builder.Services
     .AddScoped<IConstructorTransmission, ConstructorTransmission>()
     .AddScoped<IIdentityTransmission, IdentityTransmission>()
     .AddScoped<IWebTransmission, WebTransmission>()
+    .AddScoped<ISportsLogTransmission, SportsLogTransmission>()
     ;
 
 builder.Services.WebAppRegisterMqListeners();

@@ -1,0 +1,7 @@
+﻿@page "/sports-log/loader"
+@using BlazorLib.Components.SportsLog
+
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+@attribute [Authorize]
+
+<LoaderSportsLogComponent />

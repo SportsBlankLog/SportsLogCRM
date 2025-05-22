@@ -7,7 +7,7 @@ using SharedLib;
 using DbcLib;
 using System.Net.Http.Json;
 
-namespace SportsLogService;
+namespace ConnectorSportsLogApiService;
 
 /// <summary>
 /// SportsLog
@@ -35,10 +35,11 @@ public class SportsLogService(IHttpClientFactory HttpClientFactory,
 
         HttpResponseMessage response = await httpClient.PostAsync("Manager/getCustomerAdmin", content, token);
 
-        //var v = await response.Content.ReadFromJsonAsync<TResult>();
+        TLISTResponseSportsLogModel<CustomerSportsLogModel>? customersGet = await response.Content.ReadFromJsonAsync<TLISTResponseSportsLogModel<CustomerSportsLogModel>>(cancellationToken: token);
+        if (customersGet is null)
+            return ResponseBaseModel.CreateError("`Manager/getCustomerAdmin` error");
 
-
-        throw new NotImplementedException();
+        return ResponseBaseModel.CreateInfo("Ok");
     }
 
     static async Task<AuthenticateCustomerSportsLogResultModel?> GetJWT(HttpClient httpClient, AuthenticateCustomerRequestModel authorize, CancellationToken token = default)
